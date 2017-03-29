@@ -24,7 +24,7 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="145dp"
+                android:layout_width="101dp"
                 android:layout_height="wrap_content"
                 android:text="性別"
                 android:textAlignment="center"
@@ -32,26 +32,22 @@
 
             <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:text="男" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="男" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="女" />
-                </LinearLayout>
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="女" />
 
             </RadioGroup>
 
@@ -71,7 +67,7 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="145dp"
+            android:layout_width="103dp"
             android:layout_height="wrap_content"
             android:text="起站"
             android:textAlignment="center"
@@ -97,14 +93,14 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="145dp"
+            android:layout_width="103dp"
             android:layout_height="wrap_content"
             android:text="迄站"
             android:textAlignment="center"
             android:textSize="30sp" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/spinner2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
@@ -124,7 +120,7 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="145dp"
+            android:layout_width="102dp"
             android:layout_height="wrap_content"
             android:text="票種"
             android:textAlignment="center"
@@ -134,11 +130,12 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="0.46"
             android:text="全票"
-            android:layout_weight="0.32" />
+            android:textAlignment="center" />
 
         <Spinner
-            android:id="@+id/spinner4"
+            android:id="@+id/spinner3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0.16" />
@@ -147,11 +144,12 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="0.41"
             android:text="兒童票"
-            android:layout_weight="0.29" />
+            android:textAlignment="center" />
 
         <Spinner
-            android:id="@+id/spinner3"
+            android:id="@+id/spinner4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
@@ -245,7 +243,7 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="145dp"
+            android:layout_width="102dp"
             android:layout_height="wrap_content"
             android:text="姓名"
             android:textAlignment="center"
