@@ -13,8 +13,6 @@ public class MainActivity extends AppCompatActivity {
     String[] station = new String[] {"南港","台北","板橋","桃園","新竹","台中","嘉義","台南","左營"};
     String[] ticket = new String[] {"0","1","2","3","4","5"};
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -84,13 +84,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
+            android:id="@+id/linearLayout5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/linearLayout2"
-            android:layout_marginTop="44dp"
+            android:layout_below="@+id/linearLayout3"
+            android:layout_marginTop="11dp"
+            android:layout_weight="0.40"
             android:orientation="horizontal">
 
             <TextView
@@ -104,8 +105,7 @@
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
@@ -117,7 +117,8 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/linearLayout3"
             android:layout_marginTop="11dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_weight="0.13">
 
             <TextView
                 android:id="@+id/textView"
@@ -130,8 +131,7 @@
             <Spinner
                 android:id="@+id/spinner2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
