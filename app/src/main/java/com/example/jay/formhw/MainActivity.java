@@ -1,6 +1,7 @@
 package com.example.jay.formhw;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
         yes = (Button) findViewById(R.id.button);
         no = (Button) findViewById(R.id.button2);
 
-        ArrayAdapter<String> adapterStation = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,station);
+        ArrayAdapter<String> adapterStation = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,station);
         adapterStation.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ArrayAdapter<String> adapterTicket = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,ticket);
+        ArrayAdapter<String> adapterTicket = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,ticket);
         adapterTicket.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         gen.setOnCheckedChangeListener(genSelectListener);
@@ -125,10 +128,78 @@ public class MainActivity extends AppCompatActivity {
     private Button.OnClickListener okListerner = new Button.OnClickListener(){
         @Override
         public void onClick(View v) {
-            new AlertDialog.Builder(MainActivity.this).setTitle("訂票資訊")
-                    .setMessage("購票人: "+name.toString())
-                    .setMessage("性別： "+gender)
-                    .show();
+            String checkMessage = "若需要email確認信，請勾選核選方塊";
+            if (name.getText().toString().isEmpty()){
+                new AlertDialog.Builder(MainActivity.this).setTitle("警告")
+                        .setMessage("姓名為必填")
+                        .setPositiveButton("朕知道了", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {}
+                        })
+                        .show();
+            }
+            else if (startStationSelect.equals(endStationSelect)){
+                new AlertDialog.Builder(MainActivity.this).setTitle("警告")
+                        .setMessage("您選擇的起迄站相同，請重新選擇")
+                        .setPositiveButton("朕知道了", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {}
+                        })
+                        .show();
+            }
+            else if (Integer.parseInt(adTicketNum) + Integer.parseInt(chTicketNum) == 0){
+                new AlertDialog.Builder(MainActivity.this).setTitle("警告")
+                        .setMessage("您沒有訂任何票哦，請重新選擇")
+                        .setPositiveButton("朕知道了", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {}
+                        })
+                        .show();
+            }
+            else if(!check && email.getText().toString().isEmpty()){
+                new AlertDialog.Builder(MainActivity.this).setTitle("訂票資訊")
+                        .setMessage("購票人: "+name.getText().toString()+'\n'
+                                +"性別："+gender+'\n'
+                                +"起站："+startStationSelect+'\n'
+                                +"迄站："+endStationSelect+'\n'
+                                +"全票："+adTicketNum+"張"+'\n'
+                                +"兒童票："+chTicketNum+"張"+'\n'+'\n'
+                                +checkMessage)
+                        .setPositiveButton("朕知道了", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {}
+                        })
+                        .show();}
+            else if(check && email.getText().toString().isEmpty()){
+                new AlertDialog.Builder(MainActivity.this).setTitle("警告")
+                        .setMessage("若要寄送確認信，請填寫您的信箱")
+                        .setPositiveButton("朕知道了", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {}
+                        })
+                        .show();
+            }
+            else{
+                Log.i("選擇發送工具", "");
+                String[] TO = {email.getText().toString()};
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plane");
+                intent.putExtra(Intent.EXTRA_EMAIL, TO);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "訂票確認信");
+                intent.putExtra(Intent.EXTRA_TEXT, "購票人: " + name.getText().toString() + '\n'
+                        + "性別：" + gender + '\n'
+                        + "起站：" + startStationSelect + '\n'
+                        + "迄站：" + endStationSelect + '\n'
+                        + "全票：" + adTicketNum + "張" + '\n'
+                        + "兒童票：" + chTicketNum + "張");
+                try {
+                    startActivity(Intent.createChooser(intent, "選擇發送工具"));
+                    Log.i("Finished sending email", "");
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(MainActivity.this,
+                            "There is no email client installed.", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
     };
     private Button.OnClickListener cancelListener = new Button.OnClickListener(){
