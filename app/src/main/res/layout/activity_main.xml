@@ -61,6 +61,7 @@
                 android:textSize="30sp" />
 
             <RadioGroup
+                android:id="@+id/genGroup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -254,13 +255,13 @@
             android:textSize="30sp" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editText2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:hint="請輸入信箱"
-            android:inputType="textPersonName" />
+            android:inputType="textEmailAddress" />
 
     </LinearLayout>
 
